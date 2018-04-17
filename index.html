@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="utf-8" />
 		<title>SWE632-Painter</title>
@@ -22,6 +23,7 @@
 		<script src="assets/libs/js-base64/base64.min.js"></script>
 
 		<script src="assets/js/painter.1.0.min.js"></script>
+
 	</head>
 	<body>
 		<div id="preload">
@@ -52,18 +54,34 @@
 				    	<span class="text">Open photo</span>
 				    	<span class="description">Ctrl+O</span>
 				    </div>
+
 					</div>
 				</div>
 				<div class="ui dropdown item">
 		    	Save
 		    	<div class="menu" style="min-width: 210px;">
 		    		<div class="item">
-		    			<i class="save icon"></i>
+		    			<i class="save icon"  onclick="alert('This application can only Save image in .paint format which can be opened by this application')"></i>
 							<span class="text">Save photo</span>
 				   		<span class="description">Ctrl+S</span>
 		    		</div>
 			    </div>
 		    </div>
+				<div class="ui dropdown item">
+					Edit
+					<div class="menu" style="min-width: 210px;">
+		    		<div class="item">
+							<i class="reply icon"></i>
+		    			<span class="text" onclick="Undo()">Undo</span>
+				   		<span class="description">Ctrl+Z</span>
+						</div>
+		    		<div class="item">
+							<i class="share icon" id="redoicon" style="color:#d1d1d1"></i>
+		    			<span class="text" id="redotext" style="color:#d1d1d1" onclick="Redo()">Redo</span>
+				   		<span class="description" id="redodes" style="color:#d1d1d1">Ctrl+Y</span>
+		    		</div>
+			    </div>
+				</div>
 				<div class="ui dropdown item">
 		    	Help
 		    	<div class="menu" style="min-width: 180px;">
@@ -74,6 +92,7 @@
 	    		</div>
 		    </div>
 		    <div class="right menu">
+
 		    	<div class="ui dropdown item">
 		    		<div class="text"></div>
 		    		<i class="dropdown icon"></i>
@@ -90,15 +109,19 @@
 		</div>
 		<div id="mainLayout">
 			<div id="leftBox">
-				<div id="toolPanel">
+				<div id="toolPanel" >
 					<div class="ui vertical basic icon buttons">
-						<button title ="Pen" class="ui button"><i class="write icon"></i></button>
-						<button title ="Eraser" class="ui button"><i class="erase icon"></i></button>
-						<button title ="ColorSucker"class="ui button"><i class="eyedropper icon"></i></button>
-						<button title ="Paint Bucket"class="ui button"><i class="icon iconfont">&#xe687;</i></button>
-						<button title ="ZoomIn" class="ui button"><i class="zoom icon"></i></button>
-						<button title ="ZoomOut" class="ui button"><i class="zoomout icon"></i></button>
+						<button title ="Pen" class="ui button" style="width:50px;height:50px;"><i class="write icon"></i></button>
+						<button title ="Eraser" class="ui button" style="width:50px;height:50px"><i class="erase icon"></i></button>
+						<button title ="ColorSucker"class="ui button" style="width:50px;height:50px"><i class="eyedropper icon"></i></button>
+						<button title ="Paint Bucket"class="ui button" style="width:50px;height:50px"><i class="icon iconfont">&#xe687;</i></button>
+						<button title ="ZoomIn" class="ui button" style="width:50px;height:50px"><i class="zoom icon"></i></button>
+						<button title ="ZoomOut" class="ui button" style="width:50px;height:50px"><i class="zoomout icon"></i></button>
 					</div>
+				</div>
+				<div class="vertical basic icon" >
+				<button title ="Undo" class="item" id="undobu" style="width:51px;height:51px;background:#ffffff;border: 1px solid #E0E1E2;" onmousedown="this.style.backgroundColor='#f5f5f5';" onmouseup="this.style.backgroundColor = '#ffffff';" onclick="Undo()"><i class="reply icon"></i></button>
+				<button title ="Redo" class="item" id="redobu" style="width:51px;height:51px;background:#ffffff;border: 1px solid #E0E1E2;color:#d1d1d1;" onmousedown="this.style.backgroundColor='#f5f5f5';" onmouseup="this.style.backgroundColor = '#ffffff';" onclick="Redo()"><i class="share icon"></i></button>
 				</div>
 			</div>
 			<div class="vDivide"><div class="handle"></div></div>
@@ -128,7 +151,7 @@
 									<div class="eleven wide column" style="padding:0;">
 										<div class="ui slider" style="width: 87%;margin: auto;"></div>
 									</div>
-									<div id="alphaValue" class="two wide column" style="padding: 0;">100%</div>
+								<div id="alphaValue" class="two wide column" style="padding: 0;">100%</div>
 								</div>
 								<div class="ui icon basic buttons">
 									<button class="ui button"><i class="plus icon"></i></button>
@@ -191,6 +214,6 @@
 				</div>
 			</div>
 		</div>
-
 	</body>
+
 </html>
